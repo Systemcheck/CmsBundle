@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services
+        http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="systemcheck_cms_bundle.systemcheck_cms" class="Systemcheck\CmsBundle\CmsBundle" public="true"/>
+        <service id="Systemcheck\CmsBundle\CmsBundle" alias="systemcheck_cms_bundle.systemcheck_cms" public="true"/>
+
+        <service id="systemcheck_cms_bundle.systemcheck_cms_controller" class="Systemcheck\CmsBundle\Controller\CmsController" public="true">
+            <call method="setContainer">
+                <argument type="service" id="Psr\Container\ContainerInterface"/>
+            </call>
+            <tag name="container.service_subscriber"/>
+            <argument type="service" id="systemcheck_cms_bundle.systemcheck_cms"/>
+        </service>
+    </services>
+</container>
