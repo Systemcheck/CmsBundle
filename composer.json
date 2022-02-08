@@ -31,5 +31,6 @@
         "symfony/phpunit-bridge": "^6.0",
         "symfony/maker-bundle": "^1.36",
         "symfony/dotenv": "^5.4"
-    }
+    },
+    "minimum-stability": "dev"
 }
