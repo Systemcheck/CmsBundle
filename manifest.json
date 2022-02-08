@@ -1,5 +1,9 @@
 {
     "copy-from-package": {
         "config/": "%CONFIG_DIR%/"
+    },
+    "copy-from-recipe": {
+        "src/Resources/config/": "%CONFIG_DIR%/",
+        "src/": "%SRC_DIR%/"
     }
 }
