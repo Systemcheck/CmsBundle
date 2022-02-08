@@ -1,0 +1,23 @@
+
+home:
+        name: 'Home Block'
+        type : 'home'
+        id: 'tst'
+        fields: 
+            - { department: sales, did: 1} 
+        
+    
+title:
+        name: 'Überschrift'
+        type: 'title'
+        formtype: input
+        id: 'myid'
+        fields: 
+            - { name: element, type: select, options: [h1, h2, h3]} 
+            - { name: element, type: text}
+
+text:
+        name: 'Text'
+        type: 'text'
+        formtype: textarea
+        id: 'myid'

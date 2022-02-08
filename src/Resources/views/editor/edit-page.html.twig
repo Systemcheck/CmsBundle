@@ -1,0 +1,204 @@
+{% extends '@Cms/themes/startup/baseEditor.html.twig' %}
+
+{% block title %}Vendery CMS{% endblock %}
+
+{% block body %}
+<style>
+.gridPreview {
+    cursor: pointer;
+    width: 200px;
+    height: 112px;
+    background: #fff;
+    padding: 12px 16px;
+    border: 1px solid #d1d9e0;
+    border-radius: 4px;
+    margin-bottom: 8px;"
+}
+.gridPreview:hover {
+    border-color: var(--primary)
+}
+
+.ce-block {
+    border: 1px solid transparent;
+    cursor: pointer
+}
+
+.ce-block:hover {
+    border: 1px dashed var(--primary);
+    cursor: pointer
+}
+.ce-block ce-block--focused {
+    border: 1px dashed var(--primary);
+}
+.cms-editor-section {
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-top: 1px solid #d1d9e0;
+    border-bottom: 1px solid #d1d9e0;
+    align-items: center;
+    justify-items: center;
+}
+.cms-editor-section-column {
+    min-height: 600px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 2px dashed #d1d9e0;
+}
+.previewInner {
+    height: 100%;
+    width: 100%;
+    border: 1px dashed #d1d9e0;
+    border-radius: 4px;
+}
+
+</style>
+<form method="POST">
+
+<div class="row mt-4">
+    <div class="col-lg-12">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 text-end">
+                    
+                    <a href="{{path('cms.editor.pages')}}" class="btn btn-outline-danger">Abbrechen</a>
+                    <a href="{{path('cms', { slug : page.seoUrl})}}" class="btn btn-outline-primary">Seitenvorschau</a>
+                    <button class="btn btn-primary">Speichern</button>
+                </div>
+            </div>
+            <h3>Seitendetails von {{page.name}}</h3>
+            <div class="form-row mt-3">
+                <label >Seitentitel</label>
+                <input type="text" class="form-control" name="name" value="{{page.name}}" />
+            </div>
+            
+            <div id="editor"></div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 p-3">
+        <div class="card-body mt-3">
+        <h3>Konfiguration</h3>
+            <div class="form-row">
+                <label>Template</label>
+                <select type="text" class="form-control" name="template">
+                    <option value="startup">Startup</option>
+                </select>
+            </div>
+            <div class="form-check form-switch mt-3">
+                <input class="form-check-input bg-primary" name="isHomepage" type="checkbox" id="flexSwitchCheckChecked" {% if page.isHomepage %}checked {% endif %}>
+                <label class="form-check-label" for="flexSwitchCheckChecked"> als Startseite festlegen</label>
+            </div>
+        </div>
+
+        <div class="card-body mt-3">
+        <h3>SEO</h3>
+        <div class="form-row">
+            <label>Seo Url</label>
+            <input type="text" class="form-control" name="seoUrl" value="{{page.seoUrl}}" />
+        </div>
+        <div class="form-row mt-3">
+            <label>Title</label>
+            <input type="text" class="form-control" name="title" value="{{page.name}}" />
+        </div>
+
+        <div class="form-row mt-3">
+            <label>Description</label>
+            <input type="text" class="form-control" name="metaDescription" value="{{page.metaDescription}}" />
+        </div>
+
+        <div class="form-row mt-3">
+            <label>Keywords</label>
+            <input type="text" class="form-control" name="metaKeywords" value="{{page.metaKeywords}}" />
+        </div>
+
+        <div class="form-row mt-3">
+            <label>Robots</label>
+            <input type="text" class="form-control" name="robots" value="index, follow" />
+        </div>
+        </div>
+    </div>
+</div>
+</form>
+<!-- Modal -->
+<div class="modal fade" id="blockModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="col-12 text-center">
+                <select id="newBlockIndex" class="form-control">
+                    <option>Block auswählen</option>
+                    {% for block in blocks %}
+                        <option value={{loop.index}}>{{block.name}}</option>
+                    {% endfor %}
+                </select><br />
+                
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+    window.REP_LOG_APP_PROPS = {
+        app:  '{{ page.sections |json_encode|raw }}',
+        id: '{{page.id}}'
+    }
+</script>
+  {% for asset in assets.editor.js %}
+            <script src="{{asset(asset)}}" ></script>
+        {% endfor %}
+
+<script>
+var blocks = [] 
+{% for block in blocks %}
+blocks.push('{{ block|json_encode|raw }}')
+{% endfor %}
+
+
+  
+$('#newBlock').on('click', function () {
+
+    $('#blockModal').modal('show');
+})
+$('#newBlockIndex').on('change', function () {
+    id = $('#newBlockIndex').val() -1
+    block = JSON.parse(blocks[id])
+    console.log(block)
+    let html = `<div class="row p-4"><div class="col-12 p-4 border">
+        <h4>Block: "${block.name}"</h4>`
+    
+    if(block.formtype) {
+        if(block.formtype == 'input') {
+            html += `<${block.formtype} class="form-control" placeholder="${block.name}"></${block.formtype}>`
+        } else if(block.formtype == 'select'){
+            html += `<${block.formtype} class="form-control"></${block.formtype}>`
+        } else {
+            html += `<${block.formtype} class="form-control"></${block.formtype}>`
+        }
+        
+        
+    }
+    
+    html += `</div></div>`
+    $('#blockcontainer').append(html)
+})
+
+</script>
+{% endblock %}

@@ -1,0 +1,26 @@
+{
+  "entrypoints": {
+    "cms": {
+      "js": [
+        "/bundles/cms/build/runtime.js",
+        "/bundles/cms/build/vendors-node_modules_core-js_modules_es_array_concat_js-node_modules_core-js_modules_es_array-ecd287.js",
+        "/bundles/cms/build/vendors-node_modules_bootstrap_dist_js_bootstrap_esm_js-node_modules_core-js_modules_es_array-eb72a1.js",
+        "/bundles/cms/build/cms.js"
+      ],
+      "css": [
+        "/bundles/cms/build/cms.css"
+      ]
+    },
+    "editor": {
+      "js": [
+        "/bundles/cms/build/runtime.js",
+        "/bundles/cms/build/vendors-node_modules_core-js_modules_es_array_concat_js-node_modules_core-js_modules_es_array-ecd287.js",
+        "/bundles/cms/build/vendors-node_modules_editorjs_editorjs_dist_editor_js-node_modules_editorjs_header_dist_bundl-fbef40.js",
+        "/bundles/cms/build/editor.js"
+      ],
+      "css": [
+        "/bundles/cms/build/editor.css"
+      ]
+    }
+  }
+}

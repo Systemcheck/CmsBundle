@@ -1,0 +1,40 @@
+{% extends '@Cms/themes/startup/base.html.twig' %}
+
+{% block title %}Vendery{% endblock %}
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+{% block body %}
+
+{% include '@Cms/themes/startup/modules/home.html.twig' %}
+
+{% if is_granted('ROLE_CM') %}<p><a href="{{path('cms.editor.page.edit',{id:page.id} ) }}">Diese Seite bearbeiten</a> | <a href="{{path('cms.editor.new.page') }}">Neue Seite erstellen</a></p>{% endif %}
+{% for section in page.sections %}
+
+	
+		<div class="container position-relative z-index-3 pt-md-5 pb-1 pb-sm-5 my-5">
+			<div class="row justify-content-center  pt-5">
+			{% set col = 12 / section.columns|length %}
+			{% for column in section.columns %}
+				<div class="col-{{column.width}}">
+					{% for block in column.blocks %}
+						{% include '@Cms/blocks/'~ block.type ~'.html.twig'
+								with {
+									index: loop.index,
+									block: block,
+									rel: 'test',
+									blockview: 'view[collection][index]'
+								} only
+							%}
+					{% endfor %}
+				</div>
+			{% endfor %}
+	
+			</div>
+			
+	</div>
+
+
+{% endfor %}
+{% include '@Cms/themes/startup/modules/work.html.twig' %}
+{% include '@Cms/themes/startup/modules/team.html.twig' %}
+{% endblock %}

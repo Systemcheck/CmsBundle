@@ -1,0 +1,10 @@
+{% extends '@Cms/blocks/base.html.twig' %}
+
+{% block section_content %}
+    {% block title %}
+        {% include '@Cms/blocks/parts/title.html.twig' %}
+    {% endblock %}
+    {%- block text -%}
+        {% include '@Cms/blocks/parts/text.html.twig' %}
+    {%- endblock -%}
+{% endblock %}

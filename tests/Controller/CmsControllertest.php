@@ -1,37 +1,36 @@
 <?php
 namespace Systemcheck\CmsBundle\Tests\Controller;
 
-use Systemcheck\msBundle\CmsBundle;
+use Systemcheck\CmsBundle\CmsBundle;
 use PHPUnit\Framework\TestCase;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
+use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
+use Symfony\Component\Routing\RouteCollectionBuilder;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class CmsControllerTest extends TestCase
+class CmsControllerTest extends WebTestCase
 {
     public function testIndex()
     {
+        //$client = static::createClient();
+        $kernel = new KnpULoremIpsumControllerKernel();
+        $client = new KernelBrowser($kernel);
+        // Request a specific page
+        $crawler = $client->request('GET', '/cms/');
+
+        // Validate a successful response and some content
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('h1', 'Hello World');
     }
 }
+
 class KnpULoremIpsumControllerKernel extends Kernel
 {
-    public function __construct()
+    protected function configureRoutes(RouteCollectionBuilder $routes)
     {
-        parent::__construct('test', true);
-    }
-    public function registerBundles()
-    {
-        return [
-            new KnpULoremIpsumBundle(),
-        ];
-    }
-    public function registerContainerConfiguration(LoaderInterface $loader)
-    {
-        $loader->load(function(ContainerBuilder $container) {
-        });
-    }
-    public function getCacheDir()
-    {
-        return __DIR__.'/../cache/'.spl_object_hash($this);
+        $routes->import(__DIR__.'/../../src/Resources/config/routes.xml', '/api');
     }
 }

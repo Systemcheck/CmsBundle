@@ -7,6 +7,9 @@
         <service id="systemcheck_cms_bundle.systemcheck_cms" class="Systemcheck\CmsBundle\CmsBundle" public="true"/>
         <service id="Systemcheck\CmsBundle\CmsBundle" alias="systemcheck_cms_bundle.systemcheck_cms" public="true"/>
 
+        <service id="systemcheck_cms_bundle.cms_asset_service" class="Systemcheck\CmsBundle\Service\AssetService" public="true"/>
+        <service id="Systemcheck\CmsBundle\Service\AssetService" alias="systemcheck_cms_bundle.cms_asset_service" public="true"/>
+
         <service id="systemcheck_cms_bundle.systemcheck_cms_controller" class="Systemcheck\CmsBundle\Controller\CmsController" public="true">
             <call method="setContainer">
                 <argument type="service" id="Psr\Container\ContainerInterface"/>

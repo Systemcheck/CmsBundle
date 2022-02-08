@@ -1,0 +1,8 @@
+{% set block_property = (block_property is defined) ? block_property : 'title' %}
+{% set element = (block.element is defined) ? block.element : 'h2' %}
+
+
+
+<h{{ block.data.level }} class="font-weight-bold text-10 mb-4 appear-animation animated fadeInUpShorter appear-animation-visible" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="400" style="animation-delay: 400ms;">
+
+{{ block.data.text }}</h{{ block.data.level }}>

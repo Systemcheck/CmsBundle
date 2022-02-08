@@ -1,0 +1,35 @@
+{
+    "name": "systemcheck/cms_bundle",
+    "description": "Simple CMS for use in Symfony 5 Applications",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Systemcheck\\CmsBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Systemcheck\\CmsBundle\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Daniel Richter",
+            "email": "systemcheck@hotmail.de"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "symfony/asset": "^5.4",
+        "symfony/webpack-encore-bundle": "^1.13"
+    },
+    "require-dev": {
+        "symfony/framework-bundle": "^5.4",
+        "phpunit/phpunit": "^9.5",
+        "symfony/test-pack": "^1.0",
+        "symfony/phpunit-bridge": "^6.0",
+        "symfony/maker-bundle": "^1.36",
+        "symfony/dotenv": "^5.4"
+    }
+}

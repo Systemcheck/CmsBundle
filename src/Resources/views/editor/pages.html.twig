@@ -1,0 +1,45 @@
+{% extends '@Cms/themes/startup/baseEditor.html.twig' %}
+
+{% block title %}Vendery{% endblock %}
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+{% block body %}
+
+
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <h1>Seiten auf Vendery</h1>
+            <table class="table table-striped">
+                <thead>
+                    <th>Name</th>
+                    <th>Startseite</th>
+                    <th>Seo Url</th>
+                    <th>Author</th>
+                    <th>Erstellt</th>
+                    <th>Bearbeitet</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                {% if pages|length == 0 %}
+                    <tr><td colspan="6">Keine Einträge gefunden - <a href="{{path('cms.editor.new.page')}}">Neue Seite erstellen</a></td></tr>
+                {% endif %}
+                {% for page in pages %}
+                    <tr>
+                        <td>{{page.name}}</td>
+                        <td></td>
+                        <td>{{page.seoUrl}}</td>
+                        <td>{{page.author}}</td>
+                        <th>{{page.createdDate|date('d.m.Y H:i')}}</th>
+                        <td>{{page.modifiedDate|date('d.m.Y H:i')}}</td>
+                        <td><a href="{{path('cms.editor.page.edit', {id : page.id})}}" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+
+
+
+{% endblock %}

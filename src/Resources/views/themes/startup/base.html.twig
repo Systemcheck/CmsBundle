@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html data-style-switcher-options="{'changeLogo': false, 'textPrimary': '#19cbc1', 'colorPrimary': '#19cbc1', 'colorSecondary': '#504bfd', 'colorTertiary': '#eff1f3', 'colorQuaternary': '#383f48'}">
+	<head>
+
+		<!-- Basic -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">	
+
+		<title>{{page.metaTitle}}</title>	
+
+		<meta name="keywords" content="{{page.metaKeywords}}" />
+		<meta name="description" content="{{page.metaDescription}}">
+		<meta name="author" content="{{page.author}} von vendery.de">
+
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="{{asset('img/favicon.ico')}}" type="image/x-icon" />
+		<link rel="apple-touch-icon" href="{{asset('img/apple-touch-icon.png')}}">
+
+		<!-- Mobile Metas -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+
+		<!-- Web Fonts  -->
+		<link id="googleFonts" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CPlayfair+Display:400,700,900&display=swap" rel="stylesheet" type="text/css">
+
+		{% for asset in assets.css %}
+        <link rel="stylesheet" href="{{asset(asset)}}" />
+        {% endfor %}
+		<!--<link rel="stylesheet" href="master/style-switcher/style-switcher.css">
+        <link rel="stylesheet" href="master/style-switcher/style-switcher.css">
+        <link rel="stylesheet/less" href="master/less/skin-startup-agency.less">-->
+
+		<link rel="stylesheet" href="{{asset('./bundles/cms/master/style-switcher/bootstrap-colorpicker/css/bootstrap-colorpicker.css')}}">
+
+		<!-- Head Libs -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" integrity="sha512-3n19xznO0ubPpSwYCRRBgHh63DrV+bdZfHK52b1esvId4GsfwStQNPJFjeQos2h3JwCmZl0/LgLxSKMAI55hgw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+	</head>
+	<body data-plugin-scroll-spy data-plugin-options="{'target': '#header'}">
+    
+		<div class="body">
+			<header id="header" class="header-effect-shrink header-dark" data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 70}">
+				<div class="header-body bg-dark header-body-bottom-border border-top-0 appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="900">
+					<div class="header-container container">
+						<div class="header-row">
+							<div class="header-column">
+								<div class="header-row">
+									<div class="header-logo">
+										<a href="demo-startup-agency.html">
+											<img src="{{asset('img/demos/startup-agency/logo.png')}}" class="img-fluid" width="123" height="32" alt="" />
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="header-column justify-content-end">
+								<div class="header-row">
+									<div class="header-nav header-nav-line header-nav-bottom-line header-nav-bottom-line-effect-1">
+										<div class="header-nav-main header-nav-main-text-capitalize header-nav-main-square header-nav-main-dropdown-no-borders header-nav-main-effect-2 header-nav-main-sub-effect-1">
+											{% include '@Cms/menu.html.twig' %}
+										</div>
+									</div>
+									<ul class="header-social-icons social-icons social-icons-clean social-icons-medium ms-0 ms-xl-3 d-none d-md-inline-flex">
+										<li class="social-icons-instagram"><a href="https://www.instagram.com/vendery/?hl=de" target="_blank" title="Vendery bei Instagram"><i class="fab fa-instagram text-color-primary"></i></a></li>
+										<!--<li class="social-icons-twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+										<li class="social-icons-linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin"><i class="fab fa-linkedin-in"></i></a></li>-->
+									</ul>
+									<a href="tel:+1234567890" class="font-weight-semibold text-color-primary text-color-hover-primary text-decoration-none custom-font-size-2 ps-1 ms-lg-3 ms-xl-4">(800) 123-4567</a>
+                                    {% if app.user %}
+                                        <a href="{{path('app_logout')}}" class="ms-3" target="_blank" title="Linkedin"><i class="fas fa-sign-out-alt"></i></a>
+                                    {% else %}
+                                    <a href="{{path('app_login')}}" class="ms-3"target="_blank" title="Linkedin"><i class="fas fa-sign-in-alt"></i></a>
+                                        {% endif %}
+									<button class="btn header-btn-collapse-nav" data-bs-toggle="collapse" data-bs-target=".header-nav-main nav">
+										<i class="fas fa-bars"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
+
+			<div role="main" class="main">
+
+				
+				{% block body %}
+
+				{% endblock %}
+			</div>
+
+            {% include '@Cms/themes/'~ theme ~'/footer.html.twig' %}
+		</div>
+
+		<!-- Vendor -->
+	
+
+        <a class="style-switcher-open-loader" href="#" data-base-path="" data-skin-src="master/less/skin-startup-agency.less" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="right" title="Style Switcher"><i class="fas fa-cogs"></i><div class="style-switcher-tooltip"><strong>Style Switcher</strong><p>Check out different color options and styles.</p></div></a>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/kute.js/1.6.1/kute.min.js" integrity="sha512-DeLO4mdijNCQ3uOZDb1u+sUadgQUQnPr3zlPejMZBNbLi9rreaGwBjIJXYPU8WNJpRWb9LG6RpP6kdodXw6AGg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        
+        
+        <script src="{{asset('./bundles/cms/vendor/jquery/jquery.min.js')}}"></script>
+		<script src="{{asset('./bundles/cms/vendor/jquery.appear/jquery.appear.min.js')}}"></script>
+		<script src="{{asset('./bundles/cms/vendor/jquery.easing/jquery.easing.min.js')}}"></script>
+		<script src="{{asset('./bundles/cms/vendor/jquery.cookie/jquery.cookie.min.js')}}"></script>
+		<script src="{{asset('./bundles/cms/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+		<script src="{{asset('./bundles/cms/vendor/jquery.validation/jquery.validate.min.js')}}"></script>
+		<script src="{{asset('./bundles/cms/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js')}}"></script>
+		<script src="{{asset('./bundles/cms/vendor/jquery.gmap/jquery.gmap.min.js')}}"></script>
+		<script src="{{asset('./bundles/cms/vendor/lazysizes/lazysizes.min.js')}}"></script>
+		<script src="{{asset('./bundles/cms/vendor/isotope/jquery.isotope.min.js')}}"></script>
+		<script src="{{asset('./bundles/cms/vendor/owl.carousel/owl.carousel.min.js')}}"></script>
+		<script src="{{asset('./bundles/cms/vendor/magnific-popup/jquery.magnific-popup.min.js')}}"></script>
+		<script src="{{asset('./bundles/cms/vendor/vide/jquery.vide.min.js')}}"></script>
+		<script src="{{asset('./bundles/cms/vendor/vivus/vivus.min.js')}}"></script>
+		<script src="{{asset('./bundles/cms/vendor/kute/kute.min.js')}}"></script>
+
+		<!-- Theme Base, Components and Settings -->
+		<script src="{{asset('./bundles/cms/js/theme.js')}}"></script>
+
+		<!-- Current Page Vendor and Views -->
+		<script src="{{asset('./bundles/cms/js/views/view.contact.js')}}"></script>
+
+		<!-- Demo -->
+		<script src="{{asset('./bundles/cms/js/demos/demo-startup-agency.js')}}"></script>
+
+		<!-- Theme Initialization Files -->
+		<script src="{{asset('./bundles/cms/js/theme.init.js')}}"></script>
+
+        <script src="{{asset('./bundles/cms/js/custom.js')}}"></script>
+
+
+                {% for asset in assets.js %}
+            <!--<script src="{{asset(asset)}}" ></script>-->
+        {% endfor %}
+	</body>
+</html>

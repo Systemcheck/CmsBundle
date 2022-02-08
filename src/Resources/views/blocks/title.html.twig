@@ -1,0 +1,11 @@
+{% extends '@Cms/blocks/base.html.twig' %}
+
+{% block section_content %}
+    <div class="row justify-content-center">
+        <div class="col-lg-10  text-center">
+            {% block title %}
+                {% include '@Cms/blocks/parts/title.html.twig' %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
