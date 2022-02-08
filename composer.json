@@ -1,5 +1,5 @@
 {
-    "name": "systemcheck/cms_bundle",
+    "name": "systemcheck/cms-bundle",
     "description": "Simple CMS for use in Symfony 5 Applications",
     "type": "symfony-bundle",
     "license": "MIT",
